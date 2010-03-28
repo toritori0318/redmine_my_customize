@@ -8,3 +8,7 @@
   <%= textilizable( mywikitext) %>
 </div>
 
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'my_customize', :plugin => 'redmine_my_customize' %>
+<% end %>
+
