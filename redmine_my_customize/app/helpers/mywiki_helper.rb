@@ -1,0 +1,2 @@
+module MywikiHelper
+end

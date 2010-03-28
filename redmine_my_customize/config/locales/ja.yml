@@ -1,0 +1,20 @@
+ja:
+  label_mywiki: マイwiki
+  label_mywiki_edit: マイwiki編集
+
+  label_recent_messages: 最近投稿したメッセージ
+  label_watched_boards: ウォッチ中のフォーラムボード
+
+  label_issue_widget: チケットウィジェット
+  label_issue_search_all: 全てのプロジェクトからチケット検索
+  label_issue_title: 　の担当チケット
+  label_issue_sc: 　へのショートカット
+  label_issue_view: チケット表示
+  label_issue_list: チケット一覧
+  label_issue_default: デフォルト
+  
+  label_issue_view_nocmp_rep: 報告チケット表示（未完了）
+  label_issue_view_nocmp_asg: 担当チケット表示（未完了）
+  label_issue_view_cmp_rep: 報告チケット表示（完了／未完了全て）
+  label_issue_view_cmp_asg: 担当チケット表示（完了／未完了全て）
+  

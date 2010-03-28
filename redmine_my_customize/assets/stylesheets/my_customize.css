@@ -1,0 +1,4 @@
+h3.wiki { background-image: url("/images/wiki_edit.png");background-repeat: no-repeat; padding-left: 20px }
+h3.issue { background-image: url("/images/ticket.png");background-repeat: no-repeat; padding-left: 20px }
+h3.message { background-image: url("/images/message.png");background-repeat: no-repeat; padding-left: 20px }
+

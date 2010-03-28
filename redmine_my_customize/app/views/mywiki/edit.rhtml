@@ -1,0 +1,10 @@
+<h2><%= l(:label_mywiki_edit) %></h2>
+
+<% form_for :mywiki, @mywiki,   :url => {:action => 'text_update'}, :html => {:id => 'mywiki_form'} do |f| %>
+<div class="box">
+<p><%= f.text_area :text, :cols => 80, :rows => 20 %></p>
+</div>
+
+<%= submit_tag l(:button_save) %>
+
+<% end %>

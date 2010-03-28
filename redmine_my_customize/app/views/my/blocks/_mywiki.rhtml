@@ -1,0 +1,10 @@
+<h3 class="wiki"><%= l(:label_mywiki) %></h3>
+<% mywiki = Mywiki.find(:all) %>
+<% mywikitext = mywiki[0].text if mywiki.length > 0 %>
+
+<%= link_to(l(:label_mywiki_edit), :controller => 'mywiki', :action => 'edit') %>
+<div class="wiki">
+  <%# mywiki[0].text %>
+  <%= textilizable( mywikitext) %>
+</div>
+
