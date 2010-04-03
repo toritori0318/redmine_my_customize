@@ -14,10 +14,10 @@
                     <%= h(message.board.name) %>
                   </td>
                   <td>
-                     <%= link_to h(truncate(message.subject,20)), {:controller => 'messages', :action => 'show', :board_id => message.board_id, :id => message.root, :anchor => (message.parent_id ? "message-#{message.id}" : nil)}  %>
+                     <%= link_to h(truncate(message.subject, :length => 20)), {:controller => 'messages', :action => 'show', :board_id => message.board_id, :id => message.root, :anchor => (message.parent_id ? "message-#{message.id}" : nil)}  %>
                      <br> <%= format_time(message.updated_on) %>
                   </td>
-                  <td><%= h(truncate(message.content,30)) %> </td>
+                  <td><%= h(truncate(message.content, :length => 30)) %> </td>
                 </tr>
                 <% end %>
                 </tbody>

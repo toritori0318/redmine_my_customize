@@ -22,7 +22,7 @@
     <td>
     <small>
       <% if board.last_message %>
-      <%= link_to h(truncate(board.last_message.subject,20)), {:controller => 'messages', :action => 'show', :board_id => board.id, :id => board.last_message.root, :anchor => (board.last_message.parent_id ? "message-#{board.last_message.id}" : nil)}  %>
+      <%= link_to h(truncate(board.last_message.subject, :length => 20)), {:controller => 'messages', :action => 'show', :board_id => board.id, :id => board.last_message.root, :anchor => (board.last_message.parent_id ? "message-#{board.last_message.id}" : nil)}  %>
       <% end %>
     </small>
     </td>

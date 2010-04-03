@@ -38,6 +38,8 @@ Redmine-0.9.xであれば、多分動くのではないでしょうか。
 
 - プルダウン見出しラベルをja.ymlに追加
 
+- truncateメソッドが古い呼び出し方をしていたのを修正
+
 == version 0.0.1
 
 - first commit
