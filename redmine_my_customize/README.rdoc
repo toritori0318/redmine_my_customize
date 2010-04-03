@@ -34,6 +34,10 @@ Redmine-0.9.xであれば、多分動くのではないでしょうか。
 
 = バージョン
 
+== version 0.0.2
+
+- プルダウン見出しラベルをja.ymlに追加
+
 == version 0.0.1
 
 - first commit
