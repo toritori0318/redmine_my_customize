@@ -1,8 +1,13 @@
 <%
   # Renders the project quick-jump box
   def my_render_project_jump_box
-    @param_project = (params[:project]) ? params[:project] : User.current.projects[0] 
-    @param_project_id = (params[:project_id]) ? params[:project_id] : User.current.projects[0].id 
+    @default_project = nil
+    #@default_project = Project.find('project_id') 
+    if !@default_project
+      @default_project = User.current.projects[0]
+    end
+    @param_project = (params[:project]) ? params[:project] : @default_project.name 
+    @param_project_id = (params[:project_id]) ? params[:project_id] : @default_project.id 
     # Retrieve them now to avoid a COUNT query
     projects = User.current.projects.all
     if projects.any?
@@ -66,6 +71,7 @@
   <td><%= link_to(l(:label_calendar), :controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1, :assigned_to_id => 'me') %></td>
  </tr>
 </table>
+<p class="small"><%= link_to(l(:label_issue_activity), :controller => 'activity', :show_issues => "1", :user_id => User.current.id) %> </p>
 
 <% content_for :header_tags do %>
 <%= auto_discovery_link_tag(:atom, 

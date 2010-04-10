@@ -12,7 +12,8 @@ ja:
   label_issue_view: チケット表示
   label_issue_list: チケット一覧
   label_issue_default: デフォルト
-  
+  label_issue_activity: 最近のチケット活動 
+
   label_issue_view_nocmp_rep: 報告チケット表示（未完了）
   label_issue_view_nocmp_asg: 担当チケット表示（未完了）
   label_issue_view_cmp_rep: 報告チケット表示（完了／未完了全て）
