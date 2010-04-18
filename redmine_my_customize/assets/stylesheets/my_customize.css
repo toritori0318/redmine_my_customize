@@ -2,3 +2,14 @@ h3.wiki { background-image: url("../../../images/wiki_edit.png");background-repe
 h3.issue { background-image: url("../../../images/ticket.png");background-repeat: no-repeat; padding-left: 20px }
 h3.message { background-image: url("../../../images/message.png");background-repeat: no-repeat; padding-left: 20px }
 
+.mypage-box {
+-moz-border-radius-bottomleft:10px;
+-moz-border-radius-bottomright:10px;
+-moz-border-radius-topleft:10px;
+-moz-border-radius-topright:10px;
+background-color:#F5F5F5;
+border:3px solid #C0C0C0;
+margin:0.5em;
+padding:10px;
+}
+

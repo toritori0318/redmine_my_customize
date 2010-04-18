@@ -1,77 +1,30 @@
-<%
-  # Renders the project quick-jump box
-  def my_render_project_jump_box
-    @default_project = nil
-    #@default_project = Project.find('project_id') 
-    if !@default_project
-      @default_project = User.current.projects[0]
-    end
-    @param_project = (params[:project]) ? params[:project] : @default_project.name 
-    @param_project_id = (params[:project_id]) ? params[:project_id] : @default_project.id 
-    # Retrieve them now to avoid a COUNT query
-    projects = User.current.projects.all
-    if projects.any?
-      #s = '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
-      s = '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
-            "<option value=''>#{ l(:label_jump_to_a_project) }</option>" +
-            '<option value="" disabled="disabled">---</option>'
-      s << project_tree_options_for_select(projects, :selected => @param_project) do |p|
-          p 'param_project:'+@param_project.to_s if @param_project
-          { :value => url_for(:controller => 'my', :action => 'page', :aaaa => @param_project ,:project => p, :project_id => p.id ) }
-      end
-      s << '</select>'
-      s
-    end
-  end
-%>
-
-
-
-
+<div id="quick-search">
+   <%= my_render_project_jump_box %>
+</div>
 <h3 class="issue">
-    <%= l(:label_issue_widget) %>
+  <%= l(:label_issue_widget) %>
+  (<%= get_title(@param_project_id) %>)
 </h3>
 <h4 class="issue">
-<%= l(:label_issue_search_all) %>
-<% form_tag({:controller => 'search', :action => 'index'}, :method => :get ) do %>
+<%= l(:label_issue_search) %>
+<% form_tag(get_formaction(@param_project_id), :method => :get ) do %>
 <%= text_field_tag 'q', @question, :size => 20, :class => 'small', :accesskey => accesskey(:quick_search) %>
 <%= hidden_field_tag :issues, '1' %>
 <%= hidden_field_tag :all_words, '1' %>
 <% end %>
 </h4>
-<div id="quick-search">
-   <%= my_render_project_jump_box %>
-</div>
 <h4 class="issue">
-<% pj = Project.find(@param_project_id) %>    
-    <%= pj.name %>
-    <%= l(:label_issue_title) %>
+  <%= l(:label_issue_title) %>
 </h4>
 
 <% assigned_issues = Issue.find(:all, 
-                                :conditions => ["(assigned_to_id=? OR author_id=?) AND #{IssueStatus.table_name}.is_closed=? AND #{Project.table_name}.id=?", user.id, user.id, false, @param_project_id],
+                                :conditions => ["(assigned_to_id=?) AND #{IssueStatus.table_name}.is_closed=? AND #{Project.table_name}.id like ?", user.id, false, (@param_project_id=='')?'%':@param_project_id],
                                 :limit => 20, 
                                 :include => [ :status, :project, :tracker, :priority ], 
                                 :order => "#{Enumeration.table_name}.position DESC, #{Issue.table_name}.updated_on DESC") %>
 <%= render :partial => 'issues/list_simple', :locals => { :issues => assigned_issues } %>
 
-<p class="small"><%= link_to(l(:label_issue_new), :controller => 'issues', :action => 'new', :project_id => @param_project_id) %><%= l(:label_issue_sc) %> </p>
-<p class="small"><%= l(:label_issue_view)+l(:label_issue_sc) %></p>
-<table border="0" style="border:1px solid #BBBBBB">
- <tr>
-  <td><%= l(:label_issue_default) %></td>
-  <td><%= link_to(l(:label_issue_list), :controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1) %></td>
-  <td><%= link_to(l(:label_gantt), :controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1) %></td>
-  <td><%= link_to(l(:label_calendar), :controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1) %></td>
- </tr>
- <tr>
-  <td><%= l(:label_issue_view_nocmp_asg) %></td>
-  <td><%= link_to(l(:label_issue_list), :controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1, :assigned_to_id => 'me') %></td>
-  <td><%= link_to(l(:label_gantt), :controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1, :assigned_to_id => 'me') %></td>
-  <td><%= link_to(l(:label_calendar), :controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1, :assigned_to_id => 'me') %></td>
- </tr>
-</table>
-<p class="small"><%= link_to(l(:label_issue_activity), :controller => 'activity', :show_issues => "1", :user_id => User.current.id) %> </p>
+<%= my_render_project_issue_link(@param_project_id) %>
 
 <% content_for :header_tags do %>
 <%= auto_discovery_link_tag(:atom, 

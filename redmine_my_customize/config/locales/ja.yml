@@ -6,11 +6,13 @@ ja:
   label_watched_boards: ウォッチ中のフォーラムボード
 
   label_issue_widget: チケットウィジェット
-  label_issue_search_all: 全てのプロジェクトからチケット検索
-  label_issue_title: 　の担当チケット
-  label_issue_sc: 　へのショートカット
+  label_issue_search: チケット文字列検索
+  label_issue_title: 担当チケット
+  label_issue_sc: ショートカット
   label_issue_view: チケット表示
   label_issue_list: チケット一覧
+  label_issue_list_default: チケット一覧：デフォルト
+  label_issue_list_assign: チケット一覧：担当（未完了）
   label_issue_default: デフォルト
   label_issue_activity: 最近のチケット活動 
 
@@ -23,3 +25,5 @@ ja:
   issuesassignedtocstm: チケットウィジェット
   boardswatched: ウォッチ中のフォーラムボード
   forummessaged: 最近投稿したメッセージ
+
+  label_all: 全プロジェクト
