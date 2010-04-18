@@ -28,26 +28,26 @@ module MyHelper
     end
   end
 
-  def get_title(project_id)
-     if project_id == ""
+  def get_title
+     if @param_project_id == ""
        return l(:label_all)
      else
-       pj = Project.find(project_id)
+       pj = Project.find(@param_project_id)
        return pj.name
      end
   end
 
-  def get_formaction(project_id)
-     if project_id == ""
+  def get_formaction
+     if @param_project_id == ""
        return {:controller => 'search', :action => 'index'}
      else
-       return {:controller => 'search', :action => 'index', :id => project_id}
+       return {:controller => 'search', :action => 'index', :id => @param_project_id}
      end
   end
 
 
-  def my_render_project_issue_link(project_id)
-    if project_id == ""
+  def my_render_project_issue_link
+    if @param_project_id == ""
           s =  "<h4 class='issue'>#{ l(:label_issue_sc)} </h4>"
           s << "<table border='0' style='border:1px solid #BBBBBB'>"
           s << "<tr>"
@@ -87,12 +87,12 @@ module MyHelper
           s =  "<h4 class='issue'>#{ l(:label_issue_sc)} </h4>"
           s << "<table border='0' style='border:1px solid #BBBBBB'>"
           s << "<tr>"
-          s << "<td>#{ link_to(l(:label_issue_new), :controller => 'issues', :action => 'new', :project_id => project_id)} </td>"
+          s << "<td>#{ link_to(l(:label_issue_new), :controller => 'issues', :action => 'new', :project_id => @param_project_id)} </td>"
           s << "<td>-"
           s << "</td>"
           s << "</tr>"
           s << "<tr>"
-          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'projects', :action => 'activity', :id => project_id, :show_issues => '1', :user_id => User.current.id) }</td>"
+          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'projects', :action => 'activity', :id => @param_project_id, :show_issues => '1', :user_id => User.current.id) }</td>"
           s << "<td>-"
           s << "</td>"
           s << "</tr>"
@@ -101,9 +101,9 @@ module MyHelper
           s << "<td>"
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
-                "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
+                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
@@ -112,9 +112,9 @@ module MyHelper
           s << "<td>"
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
-                "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
+                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
