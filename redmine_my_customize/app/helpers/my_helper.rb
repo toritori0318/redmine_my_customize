@@ -9,23 +9,40 @@ module MyHelper
     if @tmp_project != "all"
       @param_project = (params[:project]) ? params[:project] : @default_project.name 
       @param_project_id = (params[:project_id]) ? params[:project_id] : @default_project.id 
+      @select_project = Project.find(@param_project_id) 
     end
 
     # Retrieve them now to avoid a COUNT query
     projects = User.current.projects.all
     if projects.any?
-      #s = '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
       s = '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
             "<option value=''>#{ l(:label_jump_to_a_project) }</option>" +
             '<option value="" disabled="disabled">---</option>' +
             "<option value='#{url_for(:controller => 'my', :action => 'page', :project => 'all', :project_id => "")}'>#{ l(:label_all) }</option>" +
             '<option value="" disabled="disabled">---</option>'
-      s << project_tree_options_for_select(projects, :selected => @param_project) do |p|
+      s << project_tree_options_for_select(projects, :selected => @select_project) do |p|
           { :value => url_for(:controller => 'my', :action => 'page', :project => p, :project_id => p.id ) }
       end
       s << '</select>'
       s
     end
+  end
+
+  def project_tree_options_for_select(projects, options = {})
+    s = ''
+    project_tree(projects) do |project, level|
+      name_prefix = (level > 0 ? ('&nbsp;' * 2 * level + '&#187; ') : '')
+      tag_options = {:value => project.id}
+      # add options[:selected] nil check
+      if project == options[:selected] || (options[:selected] && options[:selected].respond_to?(:include?) && options[:selected].include?(project))
+        tag_options[:selected] = 'selected'
+      else
+        tag_options[:selected] = nil
+      end
+      tag_options.merge!(yield(project)) if block_given?
+      s << content_tag('option', name_prefix + h(project), tag_options)
+    end
+    s
   end
 
   def get_title

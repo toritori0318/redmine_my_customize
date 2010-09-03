@@ -5,5 +5,5 @@ Redmine::Plugin.register :redmine_my_customize do
   author 'toritori0318'
   description 'This is a plugin for Redmine. additional widgets for My page.'
   version '0.0.5'
-  requires_redmine :version_or_higher => '0.9.0'
+  requires_redmine :version_or_higher => '1.0.0'
 end
