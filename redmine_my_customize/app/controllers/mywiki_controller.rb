@@ -1,25 +1,26 @@
 class MywikiController < ApplicationController
   def edit
-    @mywiki = Mywiki.find(:all,
-                          :conditions => ["assigned_to_id=?", User.current])
-    @mywiki = @mywiki.first
+    @mywiki = self.find
   end
 
   def text_update
-    @mywiki = Mywiki.find(:all,
-                          :conditions => ["assigned_to_id=?", User.current])
-    @mywiki = @mywiki.first
-    paramwiki = params[:mywiki]
+    @mywiki = self.find
+    content = params[:content]
 
     if !@mywiki
       Mywiki.create!(:assigned_to_id => User.current,
-                     :text => paramwiki[:text])
+                     :text => content[:text])
     else
-      @mywiki.text = paramwiki[:text]
+      @mywiki.text = content[:text]
       @mywiki.save
     end
 
     redirect_to :controller => 'my', :action => "page"
   end
 
+  def find
+    @mywiki = Mywiki.find(:all,
+                          :conditions => ["assigned_to_id=?", User.current])
+    @mywiki.first
+  end
 end
