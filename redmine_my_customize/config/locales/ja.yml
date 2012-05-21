@@ -1,6 +1,6 @@
 ja:
-  label_mywiki: マイwiki
-  label_mywiki_edit: マイwiki編集
+  label_mywiki: プライベートwiki
+  label_mywiki_edit: プライベートwiki編集
 
   label_recent_messages: 最近投稿したメッセージ
   label_watched_boards: ウォッチ中のフォーラムボード
@@ -14,14 +14,14 @@ ja:
   label_issue_list_default: チケット一覧：デフォルト
   label_issue_list_assign: チケット一覧：担当（未完了）
   label_issue_default: デフォルト
-  label_issue_activity: 最近のチケット活動 
+  label_issue_activity: 最近のチケット活動
 
   label_issue_view_nocmp_rep: 報告チケット表示（未完了）
   label_issue_view_nocmp_asg: 担当チケット表示（未完了）
   label_issue_view_cmp_rep: 報告チケット表示（完了／未完了全て）
   label_issue_view_cmp_asg: 担当チケット表示（完了／未完了全て）
 
-  mywiki: マイwiki
+  mywiki: プライベートwiki
   issuesassignedtocstm: チケットウィジェット
   boardswatched: ウォッチ中のフォーラムボード
   forummessaged: 最近投稿したメッセージ
