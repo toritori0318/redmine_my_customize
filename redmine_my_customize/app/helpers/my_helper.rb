@@ -73,7 +73,7 @@ module MyHelper
           s << "</td>"
           s << "</tr>"
           s << "<tr>"
-          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'activity', :show_issues => '1', :user_id => User.current.id) }</td>"
+          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'activities', :show_issues => '1', :user_id => User.current.id) }</td>"
           s << "<td>-"
           s << "</td>"
           s << "</tr>"
@@ -83,8 +83,8 @@ module MyHelper
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
                 "<option value='#{url_for(:controller => 'issues', :action => 'index', :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'gantts', :action => 'show', :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'calendars', :action => 'show', :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
@@ -94,8 +94,8 @@ module MyHelper
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
                 "<option value='#{url_for(:controller => 'issues', :action => 'index', :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'gantts', :action => 'show', :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'calendars', :action => 'show', :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
@@ -109,7 +109,7 @@ module MyHelper
           s << "</td>"
           s << "</tr>"
           s << "<tr>"
-          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'projects', :action => 'activity', :id => @param_project_id, :show_issues => '1', :user_id => User.current.id) }</td>"
+          s << "<td>#{ link_to(l(:label_issue_activity), :controller => 'activities', :id => @param_project_id, :show_issues => '1', :user_id => User.current.id) }</td>"
           s << "<td>-"
           s << "</td>"
           s << "</tr>"
@@ -119,8 +119,8 @@ module MyHelper
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
                 "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'gantts', :action => 'show', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'calendars', :action => 'show', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
@@ -130,8 +130,8 @@ module MyHelper
           s << '<select onchange="if (this.value != \'\') { window.location = this.value; }">' +
                 '<option value="">---</option>' +
                 "<option value='#{url_for(:controller => 'issues', :action => 'index', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_issue_list)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'gantt', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
-                "<option value='#{url_for(:controller => 'issues', :action => 'calendar', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
+                "<option value='#{url_for(:controller => 'gantts', :action => 'show', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_gantt)) }</option>" +
+                "<option value='#{url_for(:controller => 'calendars', :action => 'show', :project_id => @param_project_id, :set_filter => 1)}'>#{ link_to(l(:label_calendar)) }</option>" 
           s << '</select>'
           s << "</td>"
           s << "</tr>"
