@@ -4,7 +4,7 @@
   <%= error_messages_for 'content' %>
 
   <div class="box tabular">
-  <%= text_area_tag 'content[text]', @mywiki.text, :cols => 100, :rows => 25, :class => 'wiki-edit', :accesskey => accesskey(:edit) %>
+  <%= text_area_tag 'content[text]', @text, :cols => 100, :rows => 25, :class => 'wiki-edit', :accesskey => accesskey(:edit) %>
   </div>
 
   <%= submit_tag l(:button_save) %>

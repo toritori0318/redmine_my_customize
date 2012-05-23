@@ -1,6 +1,9 @@
 class MywikiController < ApplicationController
   def edit
     @mywiki = self.find
+    if @mywiki
+      @text = @mywiki.text
+    end
   end
 
   def text_update
