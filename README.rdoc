@@ -23,7 +23,7 @@ Redmine-1.4.x以前をお使いの方は 0.0.6 をダウンロードして下さ
 = インストール
 
 1. redmine_my_customizeフォルダをまるごと「vender/plugin」に解凍
-2. railsルートで「RAILS_ENV=production rake db:migrate_plugins」を実行
+2. railsルートで「rake redmine:plugins:migrate RAILS_ENV=production」を実行
 3. Redmineを再起動
 
 
