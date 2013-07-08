@@ -1,0 +1,12 @@
+<h3 class="message"><%=l(:label_watched_boards)%></h3>
+<% boards = Board.find(:all, 
+                               :include => [:project, :watchers],
+                               :limit => 10, 
+                               :conditions => ["#{Watcher.table_name}.user_id = ? ", user.id],
+                               :order => "#{Board.table_name}.project_id, #{Board.table_name}.id") %>
+<%= render :partial => 'boards/list_simple', :locals => { :boards => boards } %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'my_customize', :plugin => 'redmine_my_customize' %>
+<% end %>
+

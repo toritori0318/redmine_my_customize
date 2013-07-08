@@ -1,0 +1,36 @@
+
+<% if boards && boards.any? %>
+
+<table class="list boards">
+  <thead><tr>
+    <th><%= l(:label_project) %></th>
+    <th><%= l(:label_board) %></th>
+    <th><%= l(:label_message_last) %></th>
+  </tr></thead>
+  <tbody>
+<% for board in boards %>
+  <tr class="<%= cycle 'odd', 'even' %>">
+    <td>
+      <%= h(board.project.name) %>
+    </td>
+    <td>
+     <%= link_to h(board.name), {:project_id => board.project.id, :action => 'show', :id => board, :controller => 'boards'}, :class => "icon22 icon22-comment"  %>      
+    </td>
+    <td>
+    <small>
+      <% if board.last_message %>
+      <%= link_to h(truncate(board.last_message.subject, :length => 20)), {:controller => 'messages', :action => 'show', :board_id => board.id, :id => board.last_message.root, :anchor => (board.last_message.parent_id ? "message-#{board.last_message.id}" : nil)}  %>
+      <% end %>
+    </small>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<% else %>
+        <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+
+

@@ -1,0 +1,12 @@
+<h3 class="message"><%=l(:label_recent_messages)%></h3>
+<% reported_messages = Message.find(:all, 
+                                :conditions => ["author_id=? ", user.id],
+                                :limit => 8, 
+                                :order => "#{Message.table_name}.updated_on DESC") %>
+
+<%= render :partial => 'messages/list_simple', :locals => { :messages => reported_messages } %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'my_customize', :plugin => 'redmine_my_customize' %>
+<% end %>
+

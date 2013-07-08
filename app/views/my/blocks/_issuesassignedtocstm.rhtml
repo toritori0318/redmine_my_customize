@@ -1,0 +1,39 @@
+<div id="quick-search">
+   <%= my_render_project_jump_box %>
+</div>
+<h3 class="issue">
+  <%= l(:label_issue_widget) %>
+  (<%= get_title %>)
+</h3>
+<h4 class="issue">
+<%= l(:label_issue_search) %>
+<% form_tag(get_formaction, :method => :get ) do %>
+<%= text_field_tag 'q', @question, :size => 20, :class => 'small', :accesskey => accesskey(:quick_search) %>
+<%= hidden_field_tag :issues, '1' %>
+<%= hidden_field_tag :all_words, '1' %>
+<% end %>
+</h4>
+<h4 class="issue">
+  <%= l(:label_issue_title) %>
+</h4>
+
+<% assigned_issues = Issue.find(:all, 
+                                :conditions => ["(assigned_to_id=?) AND #{IssueStatus.table_name}.is_closed=? AND #{Project.table_name}.id like ?", user.id, false, (@param_project_id=='')?'%':@param_project_id],
+                                :limit => 20, 
+                                :include => [ :status, :project, :tracker, :priority ], 
+                                :order => "#{Enumeration.table_name}.position DESC, #{Issue.table_name}.updated_on DESC") %>
+<%= render :partial => 'issues/list_simple', :locals => { :issues => assigned_issues } %>
+
+<%= my_render_project_issue_link %>
+
+<% content_for :header_tags do %>
+<%= auto_discovery_link_tag(:atom, 
+                            {:controller => 'issues', :action => 'index', :set_filter => 1,
+                             :assigned_to_id => 'me', :format => 'atom', :key => User.current.rss_key},
+                            {:title => l(:label_assigned_to_irai_issues)}) %>
+<% end %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'my_customize', :plugin => 'redmine_my_customize' %>
+<% end %>
+
