@@ -8,18 +8,13 @@
     @date_to ||= Date.today + 1
     @date_from = @date_to - @days
     @with_subprojects = params[:with_subprojects].nil? ? Setting.display_subprojects_issues? : (params[:with_subprojects] == '1')
-    #@author = (params[:user_id].blank? ? nil : User.active.find(params[:user_id]))
 
-    @activity = Redmine::Activity::Fetcher.new(User.current, :project => @project,
+    eventes = Redmine::Activity::Fetcher.new(User.current, :project => @project,
                                                              :with_subprojects => @with_subprojects,
-                                                             :author => @author)
-    @activity.scope_select {|t| !params["show_#{t}"].nil?}
-    @activity.scope = (@author.nil? ? :default : :all) if @activity.scope.empty?
-
-    events = @activity.events(@date_from, @date_to)
-
-    @events_by_day = events.group_by {|event| User.current.time_to_date(event.event_datetime)}
+                                              ).events(nil, nil, :limit => 10)
+    @events_by_day = events.group_by(&:event_date)
 %>
+
 
 <h3><%=l(:label_activity)%></h3>
 <p class="subtitle"><%= l(:label_date_from_to, :start => format_date(@date_to - @days), :end => format_date(@date_to-1)) %></p>
