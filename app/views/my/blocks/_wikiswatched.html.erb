@@ -1,0 +1,11 @@
+<h3 class="wiki"><%=l(:label_watched_wikis)%></h3>
+
+<%
+ wikis = WikiPage.watched_by(User.current.id).limit(30).all
+%>
+<%= render :partial => 'wikis/list_simple', :locals => { :wikis => wikis } %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'my_customize', :plugin => 'redmine_my_customize' %>
+<% end %>
+

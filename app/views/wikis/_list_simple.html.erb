@@ -1,0 +1,25 @@
+<% if wikis && wikis.any? %>
+
+<table class="list wikis">
+  <thead><tr>
+    <th><%= l(:label_project) %></th>
+    <th><%= l(:label_wiki_page) %></th>
+  </tr></thead>
+  <tbody>
+<% for wiki in wikis %>
+  <tr class="<%= cycle 'odd', 'even' %>">
+    <td>
+      <%= h(wiki.project.name) %>
+    </td>
+    <td>
+        <%= link_to h(wiki.pretty_title), {:controller => 'wiki', :action => 'show', :id => wiki.title, :project_id => wiki.project.identifier } %>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<% else %>
+     <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+

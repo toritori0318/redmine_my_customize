@@ -4,6 +4,7 @@ ja:
 
   label_recent_messages: 最近投稿したメッセージ
   label_watched_boards: ウォッチ中のフォーラムボード
+  label_watched_wikis: ウォッチ中のWiki
 
   label_issue_widget: チケットウィジェット
   label_issue_search: チケット文字列検索
@@ -25,7 +26,9 @@ ja:
   issuesassignedtocstm: チケットウィジェット
   boardswatched: ウォッチ中のフォーラムボード
   forummessaged: 最近投稿したメッセージ
+  wikiswatched: ウォッチ中のフォーラムボード
   projects: プロジェクト
   activity: 活動
 
   label_all: 全プロジェクト
+
