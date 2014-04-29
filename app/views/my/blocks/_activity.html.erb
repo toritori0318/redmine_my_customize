@@ -19,10 +19,13 @@
 <p class="subtitle"><%= l(:label_date_from_to, :start => format_date(@date_to - @days), :end => format_date(@date_to-1)) %></p>
 
 <div id="activity">
-<% @events_by_day.keys.sort.reverse.each do |day| %>
+<% rowcount = 0 %>
+
+<% catch(:out) do %>
+<% @events_by_day.keys.sort.reverse.first(10).each do |day| %>
 <h3><%= format_activity_day(day) %></h3>
 <dl>
-<% sort_activity_events(@events_by_day[day]).each do |e, in_group| -%>
+<% @events_by_day[day].each do |e, in_group| -%>
   <dt class="<%= e.event_type %> <%= "grouped" if in_group %> <%= User.current.logged? && e.respond_to?(:event_author) && User.current == e.event_author ? 'me' : nil %>">
   <%= avatar(e.event_author, :size => "24") if e.respond_to?(:event_author) %>
   <span class="time"><%= format_time(e.event_datetime, false) %></span>
@@ -31,8 +34,13 @@
   </dt>
   <dd class="<%= "grouped" if in_group %>"><span class="description"><%= format_activity_description(e.event_description) %></span>
   <span class="author"><%= link_to_user(e.event_author) if e.respond_to?(:event_author) %></span></dd>
+
+  <% throw :out if rowcount > 10 %>
+  <% rowcount = rowcount + 1 %>
 <% end -%>
 </dl>
+<% end -%>
+
 <% end -%>
 </div>
 
