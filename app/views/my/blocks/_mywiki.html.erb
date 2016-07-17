@@ -1,13 +1,14 @@
 <h3 class="wiki"><%= l(:label_mywiki) %></h3>
-<% mywiki = Mywiki.find(:all, :conditions => ["assigned_to_id=?", User.current])%>
-<% mywikitext = mywiki[0].text if mywiki.length > 0 %>
+
+<% mywiki = Mywiki.where(:assigned_to_id => user.id).first %>
+<% mywikitext = mywiki.text unless mywiki.nil? %>
 
 <%= link_to(l(:label_mywiki_edit), { :controller => 'mywiki', :action => 'edit' }, { :class => "icon icon-edit" } ) %>
 
 <hr>
 
 <div class="wiki">
-  <%= textilizable( mywikitext) %>
+  <%= textilizable( mywikitext ) %>
 </div>
 
 <% content_for :header_tags do %>

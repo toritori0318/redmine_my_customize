@@ -1,4 +1,4 @@
-<% if messages && messages.any? %>
+<% if reported_messages && reported_messages.any? %>
 
 <table class="list boards">
         <thead><tr>
@@ -7,7 +7,7 @@
         <th><%=l(:label_preview)%></th>
         </tr></thead>
         <tbody>
-        <% for message in messages %>
+        <% for message in reported_messages %>
         <tr class="hascontextmenu <%= cycle('odd', 'even') %> ">
           <td>
             <%= h(message.board.name) %>

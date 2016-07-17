@@ -1,17 +1,14 @@
 class MywikiController < ApplicationController
   def edit
     @mywiki = self.find
-    if @mywiki
-      @text = @mywiki.text
-    end
   end
 
   def text_update
     @mywiki = self.find
     content = params[:content]
 
-    if !@mywiki
-      Mywiki.create!(:assigned_to_id => User.current,
+    if @mywiki.id.nil?
+      Mywiki.create!(:assigned_to_id => User.current.id,
                      :text => content[:text])
     else
       @mywiki.text = content[:text]
@@ -22,8 +19,8 @@ class MywikiController < ApplicationController
   end
 
   def find
-    @mywiki = Mywiki.find(:all,
-                          :conditions => ["assigned_to_id=?", User.current])
-    @mywiki.first
+    @mywiki = Mywiki.where(:assigned_to_id => User.current.id).first
+    @mywiki = Mywiki.new unless @mywiki
+    @mywiki
   end
 end
