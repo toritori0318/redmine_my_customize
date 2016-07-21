@@ -1,0 +1,34 @@
+zh:
+  label_mywiki: 我的维基
+  label_mywiki_edit: 我的维基-编辑
+
+  label_recent_messages: 最近发布的讯息
+  label_watched_boards: 已关注的论坛
+  label_watched_wikis: 已关注的维基
+
+  label_issue_widget: 问题窗口
+  label_issue_search: 问题搜索
+  label_issue_title: 标题
+  label_issue_sc: 快捷方式
+  label_issue_view: 问题视图
+  label_issue_list: 问题列表
+  label_issue_list_default: 默认问题列表
+  label_issue_list_assign: 未解决问题列表
+  label_issue_default: 默认
+  label_issue_activity: 最近活动
+
+  label_issue_view_nocmp_rep: 已报告问题（未关闭）
+  label_issue_view_nocmp_asg: 已分配问题（未关闭）
+  label_issue_view_cmp_rep: 已报告问题（已关闭／未关闭）
+  label_issue_view_cmp_asg: 已分配问题（已关闭／未关闭）
+
+  mywiki: 我的维基
+  issuesassignedtocstm: 问题窗口
+  boardswatched: 已关注的论坛
+  forummessaged: 最近发布的讯息
+  wikiswatched: 已关注的维基
+  projects: 项目
+  activity: 活动
+
+  label_all: 所有项目
+
